@@ -3,6 +3,10 @@
     "license": "proprietary",
     "minimum-stability": "stable",
     "prefer-stable": true,
+    "author": {
+        "name": "Dadinaks",
+        "email": "cedrick.henintsoa.8821@gmail.com"
+    },
     "require": {
         "php": ">=8.4",
         "ext-ctype": "*",
@@ -14,8 +18,7 @@
         "symfony/runtime": "8.0.*",
         "symfony/yaml": "8.0.*"
     },
-    "require-dev": {
-    },
+    "require-dev": {},
     "config": {
         "allow-plugins": {
             "php-http/discovery": true,
@@ -27,12 +30,12 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "Dadinaks\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "Dadinaks\\Tests\\": "tests/"
         }
     },
     "replace": {
