@@ -16,7 +16,7 @@ final class CreateAgency
         $existing = $this->repository->findByCode($code);
 
         if ($existing) {
-            throw new \DomainException('Agency already exists.', 500);
+            throw new \DomainException('Agency ' . $code . ' - ' . $label . ' already exists.', 500);
         }
 
         $agency = Agency::create($code, $label);
