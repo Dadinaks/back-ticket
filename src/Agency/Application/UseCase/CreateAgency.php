@@ -4,6 +4,7 @@ namespace Dadinaks\Agency\Application\UseCase;
 
 use Dadinaks\Agency\Domain\Entity\Agency;
 use Dadinaks\Agency\Domain\Repository\AgencyRepositoryInterface;
+use Dadinaks\Agency\InterfaceAdapter\Dto\OutputDto;
 
 final class CreateAgency
 {
@@ -11,19 +12,25 @@ final class CreateAgency
         private AgencyRepositoryInterface $repository
     ) {}
 
-    public function execute(string $code, string $label): Agency
+    public function execute(string $code, string $label): OutputDto
     {
-        $existingCode = $this->repository->findByCode($code);
-        $existingLabel = $this->repository->findByLabel($label);
-
-        if ($existingCode || $existingLabel) {
-            throw new \DomainException('Agency ' . $code . ' - ' . $label . ' already exists.', 500);
+        if (
+            $this->repository->findByCode($code) ||
+            $this->repository->findByLabel($label)
+        ) {
+            throw new \DomainException(
+                sprintf('Agency %s - %s already exists.', $code, $label)
+            );
         }
 
         $agency = Agency::create($code, $label);
 
         $this->repository->save($agency);
 
-        return $agency;
+        return new OutputDto(
+            uid: (string) $agency->getUid(),
+            code: $agency->getCode(),
+            label: $agency->getLabel()
+        );
     }
 }

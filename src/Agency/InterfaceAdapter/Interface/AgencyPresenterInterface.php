@@ -15,5 +15,6 @@ interface AgencyPresenterInterface
     public function presentError(
         int $code,
         string $message,
+        ?array $data
     ): array;
 }

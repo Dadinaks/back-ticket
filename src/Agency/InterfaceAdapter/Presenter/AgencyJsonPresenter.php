@@ -23,6 +23,7 @@ final class AgencyJsonPresenter implements AgencyPresenterInterface
     public function presentError(
         int $code,
         string $message,
+        ?array $data
     ): array {
         return [
             'success'   => false,
@@ -32,19 +33,19 @@ final class AgencyJsonPresenter implements AgencyPresenterInterface
         ];
     }
 
-    private function normalize(array|OutputDTO $data): array
+    private function normalize(array|OutputDto $data): array
     {
-        if ($data instanceof OutputDTO) {
+        if ($data instanceof OutputDto) {
             return [$this->normalizeDto($data)];
         }
 
         return array_map(
-            fn(OutputDTO $dto) => $this->normalizeDto($dto),
+            fn(OutputDto $dto) => $this->normalizeDto($dto),
             $data
         );
     }
 
-    private function normalizeDto(OutputDTO $dto): array
+    private function normalizeDto(OutputDto $dto): array
     {
         return [
             'uid'   => $dto->uid,
