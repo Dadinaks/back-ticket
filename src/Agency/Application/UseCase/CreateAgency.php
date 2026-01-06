@@ -15,11 +15,19 @@ final class CreateAgency
     public function execute(string $code, string $label): OutputDto
     {
         if (
-            $this->repository->findByCode($code) ||
+            $this->repository->findByCode($code) &&
             $this->repository->findByLabel($label)
         ) {
             throw new \DomainException(
                 sprintf('Agency %s - %s already exists.', $code, $label)
+            );
+        } elseif ($this->repository->findByCode($code)) {
+            throw new \DomainException(
+                sprintf('Agency with code %s already exists.', $code)
+            );
+        } else if ($this->repository->findByLabel($label)) {
+            throw new \DomainException(
+                sprintf('Agency with label %s already exists.', $label)
             );
         }
 
