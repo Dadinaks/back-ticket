@@ -13,9 +13,10 @@ final class CreateAgency
 
     public function execute(string $code, string $label): Agency
     {
-        $existing = $this->repository->findByCode($code);
+        $existingCode = $this->repository->findByCode($code);
+        $existingLabel = $this->repository->findByLabel($label);
 
-        if ($existing) {
+        if ($existingCode || $existingLabel) {
             throw new \DomainException('Agency ' . $code . ' - ' . $label . ' already exists.', 500);
         }
 
