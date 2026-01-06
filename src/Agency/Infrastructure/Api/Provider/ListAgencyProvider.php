@@ -21,7 +21,7 @@ final class ListAgencyProvider implements ProviderInterface
 
             return $this->presenter->presentSuccess(
                 200,
-                'Agency list',
+                'List of agencies retrieved successfully.',
                 $agencies
             );
         } catch (\DomainException $e) {
