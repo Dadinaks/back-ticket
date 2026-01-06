@@ -3,9 +3,11 @@
 namespace Dadinaks\Agency\Infrastructure\Api\Resource;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\OpenApi\Model\Operation;
 use Dadinaks\Agency\Infrastructure\Api\Processor\CreateAgencyProcessor;
+use Dadinaks\Agency\Infrastructure\Api\Provider\ListAgencyProvider;
 use Dadinaks\Agency\InterfaceAdapter\Dto\InputDto;
 use Dadinaks\Agency\InterfaceAdapter\Dto\OutputDto;
 
@@ -22,7 +24,15 @@ use Dadinaks\Agency\InterfaceAdapter\Dto\OutputDto;
                 summary: 'Create a new agency',
                 description: 'Add new agency to the system',
             )
-        )
+        ),
+        new GetCollection(
+            output: OutputDto::class,
+            provider: ListAgencyProvider::class,
+            openapi: new Operation(
+                summary: 'List all agencies',
+                description: 'Retrieve a list of all agencies in the system',
+            )
+        ),
     ]
 )]
 final class AgencyApi {}
