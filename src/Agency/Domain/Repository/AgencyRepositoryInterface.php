@@ -6,7 +6,7 @@ use Dadinaks\Agency\Domain\Entity\Agency;
 
 interface AgencyRepositoryInterface
 {
-    public function save(Agency $agency): void;
+    public function save(Agency $agency, ?string $uid): void;
 
     public function findByCode(string $code): ?Agency;
 

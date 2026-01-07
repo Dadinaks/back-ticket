@@ -13,13 +13,27 @@ final class AgencyRepository implements AgencyRepositoryInterface
         private EntityManagerInterface $entityManager
     ) {}
 
-    public function save(Agency $agency): void
+    public function save(Agency $agency, ?string $uid): void
     {
-        $orm = new AgencyOrm(
-            $agency->getUid(),
-            $agency->getCode(),
-            $agency->getLabel()
-        );
+        $orm = $this->entityManager
+            ->getRepository(AgencyOrm::class)
+            ->findOneBy(['uid' => $uid]);
+
+        if ($orm) {
+            if ($orm->getCode() != null) {
+                $orm->update($agency->getUid(), $agency->getCode(), null);
+            } elseif ($orm->getLabel() != null) {
+                $orm->update($agency->getUid(), null, $agency->getLabel());
+            } else {
+                $orm->update($agency->getUid(), $agency->getCode(), $agency->getLabel());
+            }
+        } else {
+            $orm = new AgencyOrm(
+                $agency->getUid(),
+                $agency->getCode(),
+                $agency->getLabel()
+            );
+        }
 
         $this->entityManager->persist($orm);
         $this->entityManager->flush();

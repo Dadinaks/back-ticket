@@ -33,7 +33,7 @@ final class CreateAgency
 
         $agency = Agency::create($code, $label);
 
-        $this->repository->save($agency);
+        $this->repository->save($agency, null);
 
         return new OutputDto(
             uid: (string) $agency->getUid(),

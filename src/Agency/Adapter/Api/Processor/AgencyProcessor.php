@@ -3,6 +3,7 @@
 namespace Dadinaks\Agency\Adapter\Api\Processor;
 
 use ApiPlatform\Metadata\Operation;
+use ApiPlatform\Metadata\Patch;
 use ApiPlatform\State\ProcessorInterface;
 use Dadinaks\Agency\Application\UseCase\CreateAgency;
 use Dadinaks\Agency\Application\UseCase\UpdateAgency;
@@ -19,7 +20,7 @@ final class AgencyProcessor implements ProcessorInterface
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): mixed
     {
         try {
-            if (isset($uriVariables['uid'])) {
+            if (isset($uriVariables['uid']) && $operation instanceof Patch) {
                 $agency = $this->useCaseUpdate->execute(
                     $uriVariables['uid'],
                     $data->code,

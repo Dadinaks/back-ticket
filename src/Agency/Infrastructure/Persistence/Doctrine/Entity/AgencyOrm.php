@@ -38,4 +38,21 @@ class AgencyOrm
             $this->label
         );
     }
+
+    public function update(Uuid $uid, ?string $code, ?string $label): void
+    {
+        $this->uid = $uid;
+        $this->code = $code ?: null;
+        $this->label = $label ?: null;
+    }
+
+    public function getCode(): string
+    {
+        return $this->code;
+    }
+
+    public function getLabel(): string
+    {
+        return $this->label;
+    }
 }

@@ -41,7 +41,7 @@ final class UpdateAgency
 
         $agency->update($code, $label);
 
-        $this->repository->save($agency);
+        $this->repository->save($agency, $uid);
 
         return new OutputDto(
             uid: (string) $agency->getUid(),

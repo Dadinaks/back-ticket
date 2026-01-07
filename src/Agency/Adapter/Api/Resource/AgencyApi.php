@@ -49,6 +49,7 @@ use Dadinaks\Agency\Adapter\Dto\UpdateInputDto;
             uriTemplate: '/agency/{uid}',
             input: UpdateInputDto::class,
             processor: AgencyProcessor::class,
+            provider: AgencyProvider::class,
             openapi: new Operation(
                 summary: 'Update an agency',
                 description: 'Partially updates one or more fields of an existing agency identified by its UID. Only the provided fields are modified.',
