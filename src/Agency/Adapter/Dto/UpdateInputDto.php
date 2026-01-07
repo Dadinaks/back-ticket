@@ -1,6 +1,6 @@
 <?php
 
-namespace Dadinaks\Agency\InterfaceAdapter\Dto;
+namespace Dadinaks\Agency\Adapter\Dto;
 
 use Symfony\Component\Validator\Constraints as Assert;
 

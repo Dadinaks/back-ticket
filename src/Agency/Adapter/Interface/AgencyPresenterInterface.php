@@ -1,8 +1,8 @@
 <?php
 
-namespace Dadinaks\Agency\InterfaceAdapter\Interface;
+namespace Dadinaks\Agency\Adapter\Interface;
 
-use Dadinaks\Agency\InterfaceAdapter\Dto\OutputDto;
+use Dadinaks\Agency\Adapter\Dto\OutputDto;
 
 interface AgencyPresenterInterface
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Dadinaks\Agency\Infrastructure\Api\Processor;
+namespace Dadinaks\Agency\Adapter\Api\Processor;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
 use Dadinaks\Agency\Application\UseCase\CreateAgency;
 use Dadinaks\Agency\Application\UseCase\UpdateAgency;
-use Dadinaks\Agency\InterfaceAdapter\Interface\AgencyPresenterInterface;
+use Dadinaks\Agency\Adapter\Interface\AgencyPresenterInterface;
 
 final class AgencyProcessor implements ProcessorInterface
 {

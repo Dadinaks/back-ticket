@@ -1,6 +1,6 @@
 <?php
 
-namespace Dadinaks\Agency\InterfaceAdapter\Dto;
+namespace Dadinaks\Agency\Adapter\Dto;
 
 final class OutputDto
 {

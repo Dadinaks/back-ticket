@@ -1,9 +1,9 @@
 <?php
 
-namespace Dadinaks\Agency\InterfaceAdapter\Presenter;
+namespace Dadinaks\Agency\Adapter\Presenter;
 
-use Dadinaks\Agency\InterfaceAdapter\Dto\OutputDto;
-use Dadinaks\Agency\InterfaceAdapter\Interface\AgencyPresenterInterface;
+use Dadinaks\Agency\Adapter\Dto\OutputDto;
+use Dadinaks\Agency\Adapter\Interface\AgencyPresenterInterface;
 
 final class AgencyJsonPresenter implements AgencyPresenterInterface
 {

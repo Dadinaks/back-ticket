@@ -3,7 +3,7 @@
 namespace Dadinaks\Agency\Application\UseCase;
 
 use Dadinaks\Agency\Domain\Repository\AgencyRepositoryInterface;
-use Dadinaks\Agency\InterfaceAdapter\Dto\OutputDto;
+use Dadinaks\Agency\Adapter\Dto\OutputDto;
 
 final class ShowAgency
 {

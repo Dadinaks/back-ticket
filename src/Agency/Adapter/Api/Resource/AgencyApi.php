@@ -1,6 +1,6 @@
 <?php
 
-namespace Dadinaks\Agency\Infrastructure\Api\Resource;
+namespace Dadinaks\Agency\Adapter\Api\Resource;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
@@ -8,11 +8,11 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\OpenApi\Model\Operation;
-use Dadinaks\Agency\Infrastructure\Api\Processor\AgencyProcessor;
-use Dadinaks\Agency\Infrastructure\Api\Provider\AgencyProvider;
-use Dadinaks\Agency\InterfaceAdapter\Dto\InputDto;
-use Dadinaks\Agency\InterfaceAdapter\Dto\OutputDto;
-use Dadinaks\Agency\InterfaceAdapter\Dto\UpdateInputDto;
+use Dadinaks\Agency\Adapter\Api\Processor\AgencyProcessor;
+use Dadinaks\Agency\Adapter\Api\Provider\AgencyProvider;
+use Dadinaks\Agency\Adapter\Dto\InputDto;
+use Dadinaks\Agency\Adapter\Dto\OutputDto;
+use Dadinaks\Agency\Adapter\Dto\UpdateInputDto;
 
 #[ApiResource(
     shortName: 'Agency',

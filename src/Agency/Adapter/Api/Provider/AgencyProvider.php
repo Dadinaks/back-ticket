@@ -1,12 +1,12 @@
 <?php
 
-namespace Dadinaks\Agency\Infrastructure\Api\Provider;
+namespace Dadinaks\Agency\Adapter\Api\Provider;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
 use Dadinaks\Agency\Application\UseCase\ListAgency;
 use Dadinaks\Agency\Application\UseCase\ShowAgency;
-use Dadinaks\Agency\InterfaceAdapter\Interface\AgencyPresenterInterface;
+use Dadinaks\Agency\Adapter\Interface\AgencyPresenterInterface;
 
 final class AgencyProvider implements ProviderInterface
 {
