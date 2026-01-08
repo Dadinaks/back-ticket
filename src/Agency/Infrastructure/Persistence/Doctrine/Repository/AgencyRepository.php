@@ -50,11 +50,7 @@ final class AgencyRepository implements AgencyRepositoryInterface
 
     public function save(Agency $agency): void
     {
-        $orm = new AgencyOrm(
-            $agency->getUid(),
-            $agency->getCode(),
-            $agency->getLabel()
-        );
+        $orm = AgencyOrm::fromDomain($agency);
 
         $this->entityManager->persist($orm);
         $this->entityManager->flush();
