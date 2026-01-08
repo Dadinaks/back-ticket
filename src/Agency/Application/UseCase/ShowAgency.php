@@ -22,7 +22,7 @@ final class ShowAgency
         }
 
         return new OutputDto(
-            uid: (string) $agency->getUid(),
+            uid: $agency->getUid(),
             code: $agency->getCode(),
             label: $agency->getLabel()
         );

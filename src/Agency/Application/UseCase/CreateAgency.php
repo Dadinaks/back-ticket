@@ -2,9 +2,9 @@
 
 namespace Dadinaks\Agency\Application\UseCase;
 
+use Dadinaks\Agency\Adapter\Dto\OutputDto;
 use Dadinaks\Agency\Domain\Entity\Agency;
 use Dadinaks\Agency\Domain\Repository\AgencyRepositoryInterface;
-use Dadinaks\Agency\Adapter\Dto\OutputDto;
 
 final class CreateAgency
 {
@@ -31,9 +31,8 @@ final class CreateAgency
             );
         }
 
-        $agency = Agency::create($code, $label);
-
-        $this->repository->save($agency, null);
+        $agency = new Agency($code, $label);
+        $this->repository->save($agency);
 
         return new OutputDto(
             uid: (string) $agency->getUid(),

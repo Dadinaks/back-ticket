@@ -13,30 +13,13 @@ final class AgencyRepository implements AgencyRepositoryInterface
         private EntityManagerInterface $entityManager
     ) {}
 
-    public function save(Agency $agency, ?string $uid): void
+    public function findByUid(string $uid): ?Agency
     {
         $orm = $this->entityManager
             ->getRepository(AgencyOrm::class)
             ->findOneBy(['uid' => $uid]);
 
-        if ($orm) {
-            if ($orm->getCode() != null) {
-                $orm->update($agency->getUid(), $agency->getCode(), null);
-            } elseif ($orm->getLabel() != null) {
-                $orm->update($agency->getUid(), null, $agency->getLabel());
-            } else {
-                $orm->update($agency->getUid(), $agency->getCode(), $agency->getLabel());
-            }
-        } else {
-            $orm = new AgencyOrm(
-                $agency->getUid(),
-                $agency->getCode(),
-                $agency->getLabel()
-            );
-        }
-
-        $this->entityManager->persist($orm);
-        $this->entityManager->flush();
+        return $orm?->toDomain();
     }
 
     public function findByCode(string $code): ?Agency
@@ -44,15 +27,6 @@ final class AgencyRepository implements AgencyRepositoryInterface
         $orm = $this->entityManager
             ->getRepository(AgencyOrm::class)
             ->findOneBy(['code' => $code]);
-
-        return $orm?->toDomain();
-    }
-
-    public function findByUid(string $uid): ?Agency
-    {
-        $orm = $this->entityManager
-            ->getRepository(AgencyOrm::class)
-            ->findOneBy(['uid' => $uid]);
 
         return $orm?->toDomain();
     }
@@ -72,5 +46,17 @@ final class AgencyRepository implements AgencyRepositoryInterface
             fn(AgencyOrm $orm) => $orm->toDomain(),
             $this->entityManager->getRepository(AgencyOrm::class)->findAll()
         );
+    }
+
+    public function save(Agency $agency): void
+    {
+        $orm = new AgencyOrm(
+            $agency->getUid(),
+            $agency->getCode(),
+            $agency->getLabel()
+        );
+
+        $this->entityManager->persist($orm);
+        $this->entityManager->flush();
     }
 }

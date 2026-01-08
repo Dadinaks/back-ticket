@@ -6,62 +6,39 @@ use Symfony\Component\Uid\Uuid;
 
 final class Agency
 {
-    private int $id;
-    private Uuid $uuid;
-    private String $code;
-    private String $label;
+    private string $uid;
 
+    private string $code;
 
-    private function __construct(String $code, String $label)
+    private string $label;
+
+    public function __construct(string $code, string $label)
     {
-        $this->uuid = Uuid::v7();
-        $this->code = $code;
+        $this->uid   = Uuid::v7()->toString();
+        $this->code  = $code;
         $this->label = $label;
     }
 
-    public static function create(String $code, String $label): self
+    public static function fromState(array $state): self
     {
-        return new self($code, $label);
+        $agency = new self($state['code'], $state['label']);
+        $agency->uid = $state['uid'];
+
+        return $agency;
     }
 
-    public function update(?string $code, ?string $label): void
+    public function getUid(): string
     {
-        if ($code !== null) {
-            $this->code = $code;
-        }
-
-        if ($label !== null) {
-            $this->label = $label;
-        }
+        return $this->uid;
     }
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getUid(): Uuid
-    {
-        return $this->uuid;
-    }
-
-    public function getCode(): String
+    public function getCode(): string
     {
         return $this->code;
     }
 
-    public function setCode(String $code): String
-    {
-        return $this->code = $code;
-    }
-
-    public function getLabel(): String
+    public function getLabel(): string
     {
         return $this->label;
-    }
-
-    public function setLabel(String $label): String
-    {
-        return $this->label = $label;
     }
 }

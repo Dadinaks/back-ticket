@@ -1,6 +1,6 @@
 <?php
 
-namespace Dadinaks\Agency\Adapter\Api\Provider;
+namespace Dadinaks\Agency\Infrastructure\Api\Provider;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;

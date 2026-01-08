@@ -4,7 +4,6 @@ namespace Dadinaks\Agency\Infrastructure\Persistence\Doctrine\Entity;
 
 use Dadinaks\Agency\Domain\Entity\Agency;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'Agency')]
@@ -16,7 +15,7 @@ class AgencyOrm
     private ?int $id;
 
     #[ORM\Column(type: 'uuid', unique: true)]
-    private Uuid $uid;
+    private string $uid;
 
     #[ORM\Column(length: 255, unique: true)]
     private string $code;
@@ -24,35 +23,22 @@ class AgencyOrm
     #[ORM\Column(length: 255)]
     private string $label;
 
-    public function __construct(Uuid $uid, string $code, ?string $label)
+    public static function fromDomain(Agency $agency): self
     {
-        $this->uid = $uid;
-        $this->code = $code;
-        $this->label = $label;
+        $orm = new self();
+        $orm->uid   = $agency->getUid();
+        $orm->code  = $agency->getCode();
+        $orm->label = $agency->getLabel();
+
+        return $orm;
     }
 
     public function toDomain(): Agency
     {
-        return Agency::create(
-            $this->code,
-            $this->label
-        );
-    }
-
-    public function update(Uuid $uid, ?string $code, ?string $label): void
-    {
-        $this->uid = $uid;
-        $this->code = $code ?: null;
-        $this->label = $label ?: null;
-    }
-
-    public function getCode(): string
-    {
-        return $this->code;
-    }
-
-    public function getLabel(): string
-    {
-        return $this->label;
+        return Agency::fromState([
+            'uid'   => $this->uid,
+            'code'  => $this->code,
+            'label' => $this->label,
+        ]);
     }
 }

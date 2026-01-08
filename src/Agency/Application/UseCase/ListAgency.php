@@ -24,7 +24,7 @@ final class ListAgency
 
         return array_map(
             fn($agency) => new OutputDto(
-                uid: (string) $agency->getUid(),
+                uid: $agency->getUid(),
                 code: $agency->getCode(),
                 label: $agency->getLabel()
             ),

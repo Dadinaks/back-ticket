@@ -7,11 +7,8 @@ use Dadinaks\Agency\Adapter\Interface\AgencyPresenterInterface;
 
 final class AgencyJsonPresenter implements AgencyPresenterInterface
 {
-    public function presentSuccess(
-        int $code,
-        string $message,
-        array|OutputDto $data
-    ): array {
+    public function presentSuccess(int $code, string $message, array|OutputDto $data): array
+    {
         return [
             'success'   => true,
             'code'      => $code,
@@ -20,11 +17,8 @@ final class AgencyJsonPresenter implements AgencyPresenterInterface
         ];
     }
 
-    public function presentError(
-        int $code,
-        string $message,
-        ?array $data
-    ): array {
+    public function presentError(int $code, string $message, ?array $data): array
+    {
         return [
             'success'   => false,
             'code'      => $code,
