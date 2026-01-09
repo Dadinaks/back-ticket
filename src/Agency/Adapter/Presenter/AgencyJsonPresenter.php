@@ -5,6 +5,22 @@ namespace Dadinaks\Agency\Adapter\Presenter;
 use Dadinaks\Agency\Adapter\Dto\OutputDto;
 use Dadinaks\Agency\Adapter\Interface\AgencyPresenterInterface;
 
+/**
+ * A presenter dedicated to transforming business data into a standardized JSON response.
+ * It implements AgencyPresenterInterface and provides two public methods:
+ *
+ * - **presentSuccess()** : generates a JSON structure indicating successful processing.
+ *   The `data` field is normalized: if only one `OutputDto` is provided, it is encapsulated
+ *   in an array; if an array of `OutputDto` is provided, each object is converted into
+ *   its associated array (uid, code, label).
+ *
+ * - **presentError()** : returns a JSON structure indicating failure; the `data` field
+ *   is always an empty array.
+ *
+ * The presenter thus guarantees a consistent response format for all routes exposed by the agency.
+ *
+ * @author Dadinaks Cedrick <cedrick.henintsoa.8821@gmail.com>
+ */
 final class AgencyJsonPresenter implements AgencyPresenterInterface
 {
     public function presentSuccess(int $code, string $message, array|OutputDto $data): array

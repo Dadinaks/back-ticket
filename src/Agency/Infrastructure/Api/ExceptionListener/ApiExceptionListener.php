@@ -8,6 +8,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
+/**
+ * This class intercepts exceptions returned by the API Platform or those from the Domain (DomainException),
+ * and formats them using the functions of AgencyPresenterInterface.
+ * @author Dadinaks Cedrick <cedrick.henintsoa.8821@gmail.com>
+ */
 final class ApiExceptionListener
 {
     public function __construct(
