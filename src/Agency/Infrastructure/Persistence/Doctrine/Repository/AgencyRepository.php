@@ -50,9 +50,16 @@ final class AgencyRepository implements AgencyRepositoryInterface
 
     public function save(Agency $agency): void
     {
-        $orm = AgencyOrm::fromDomain($agency);
+        $orm = $this->entityManager->getRepository(AgencyOrm::class)->findOneBy(['uid' => $agency->getUid()]);
 
-        $this->entityManager->persist($orm);
+        if ($orm) {
+            $orm->setCode($agency->getCode());
+            $orm->setLabel($agency->getLabel());
+        } else {
+            $orm = AgencyOrm::fromDomain($agency);
+            $this->entityManager->persist($orm);
+        }
+
         $this->entityManager->flush();
     }
 }

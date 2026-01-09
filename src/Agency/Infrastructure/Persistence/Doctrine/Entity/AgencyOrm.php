@@ -41,4 +41,14 @@ class AgencyOrm
             'label' => $this->label,
         ]);
     }
+
+    public function setCode(string $code): string
+    {
+        return $this->code = $code;
+    }
+
+    public function setLabel(string $label): string
+    {
+        return $this->label = $label;
+    }
 }

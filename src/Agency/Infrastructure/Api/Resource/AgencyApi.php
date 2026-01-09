@@ -12,6 +12,7 @@ use Dadinaks\Agency\Infrastructure\Api\Processor\AgencyProcessor;
 use Dadinaks\Agency\Infrastructure\Api\Provider\AgencyProvider;
 use Dadinaks\Agency\Adapter\Dto\InputDto;
 use Dadinaks\Agency\Adapter\Dto\OutputDto;
+use Dadinaks\Agency\Adapter\Dto\UpdateInputDto;
 
 #[ApiResource(
     shortName: 'Agency',
@@ -44,7 +45,7 @@ use Dadinaks\Agency\Adapter\Dto\OutputDto;
                 description: 'Retrieves detailed information about a specific agency identified by its UID.',
             )
         ),
-        /* new Patch(
+        new Patch(
             uriTemplate: '/agency/{uid}',
             input: UpdateInputDto::class,
             processor: AgencyProcessor::class,
@@ -53,7 +54,7 @@ use Dadinaks\Agency\Adapter\Dto\OutputDto;
                 summary: 'Update an agency',
                 description: 'Partially updates one or more fields of an existing agency identified by its UID. Only the provided fields are modified.',
             )
-        ) */
+        )
     ]
 )]
 final class AgencyApi {}

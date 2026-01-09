@@ -27,6 +27,17 @@ final class Agency
         return $agency;
     }
 
+    public function update(?string $code, ?string $label): void
+    {
+        if ($code !== null) {
+            $this->code = $code;
+        }
+
+        if ($label !== null) {
+            $this->label = $label;
+        }
+    }
+
     public function getUid(): string
     {
         return $this->uid;

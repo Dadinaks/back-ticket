@@ -18,30 +18,22 @@ final class AgencyProvider implements ProviderInterface
 
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): object|array|null
     {
-        try {
-            if (isset($uriVariables['uid'])) {
-                $agency = $this->useCaseShow->execute($uriVariables['uid']);
+        if (isset($uriVariables['uid'])) {
+            $agency = $this->useCaseShow->execute($uriVariables['uid']);
 
-                return $this->presenter->presentSuccess(
-                    200,
-                    'Agency details retrieved successfully.',
-                    $agency
-                );
-            } else {
-                $agencies = $this->useCaseList->execute();
-
-                return $this->presenter->presentSuccess(
-                    200,
-                    'List of agencies retrieved successfully.',
-                    $agencies
-                );
-            }
-        } catch (\DomainException $e) {
-            return $this->presenter->presentError(
-                404,
-                $e->getMessage(),
-                []
+            return $this->presenter->presentSuccess(
+                200,
+                'Agency details retrieved successfully.',
+                $agency
             );
         }
+
+        $agencies = $this->useCaseList->execute();
+
+        return $this->presenter->presentSuccess(
+            200,
+            'List of agencies retrieved successfully.',
+            $agencies
+        );
     }
 }
