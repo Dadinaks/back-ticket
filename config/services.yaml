@@ -19,7 +19,11 @@ services:
     Dadinaks\:
         resource: '../src/'
 
-    Dadinaks\Agency\Infrastructure\Api\EventListener\ApiExceptionListener:
+    Dadinaks\Agency\Infrastructure\Api\ExceptionListener\ApiExceptionListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }
+    
+    Dadinaks\Category\Infrastructure\Api\ExceptionListener\ApiExceptionListener:
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
 

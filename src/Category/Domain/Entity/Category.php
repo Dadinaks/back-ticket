@@ -14,7 +14,7 @@ final class Category
 
     private \DateTimeImmutable $createdAt;
 
-    private \DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct(string $category)
     {
@@ -28,17 +28,20 @@ final class Category
     {
         $category = new self($state['category']);
         $category->uid       = $state['uid'];
-        $category->isActive  = $state['is_active'];
-        $category->createdAt = $state['created_at'];
-        $category->updatedAt = $state['updated_at'];
+        $category->isActive  = $state['isActive'];
+        $category->createdAt = $state['createdAt'];
+        $category->updatedAt = $state['updatedAt'];
 
         return $category;
     }
 
-    public function update(?string $category): void
+    public function update(?string $category, ?bool $isActive): void
     {
         if ($category !== null) {
             $this->category = $category;
+        }
+        if ($isActive !== null) {
+            $this->isActive = $isActive;
         }
         $this->updatedAt = new \DateTimeImmutable();
     }
@@ -63,7 +66,7 @@ final class Category
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): \DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }

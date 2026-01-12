@@ -11,7 +11,7 @@ final class UpdateCategory
         private CategoryRepositoryInterface $repository
     ) {}
 
-    public function execute(string $uid, ?string $category): OutputDto
+    public function execute(string $uid, ?string $category, ?bool $isActive): OutputDto
     {
         $categories = $this->repository->findByUid($uid);
 
@@ -29,7 +29,7 @@ final class UpdateCategory
             }
         }
 
-        $categories->update($category);
+        $categories->update($category, $isActive);
 
         $this->repository->save($categories);
 

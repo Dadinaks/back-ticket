@@ -1,22 +1,22 @@
 <?php
 
-namespace Dadinaks\Agency\Infrastructure\Api\ExceptionListener;
+namespace Dadinaks\Category\Infrastructure\Api\ExceptionListener;
 
 use ApiPlatform\Validator\Exception\ValidationException;
-use Dadinaks\Agency\Adapter\Interface\AgencyPresenterInterface;
+use Dadinaks\Category\Adapter\Interface\CategoryPresenterInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 /**
  * This class intercepts exceptions returned by the API Platform or those from the Domain (DomainException),
- * and formats them using the functions of AgencyPresenterInterface.
+ * and formats them using the functions of CategoryPresenterInterface.
  * @author Dadinaks Cedrick <cedrick.henintsoa.8821@gmail.com>
  */
-class ApiExceptionListener
+final class ApiExceptionListener
 {
     public function __construct(
-        private AgencyPresenterInterface $presenter
+        private CategoryPresenterInterface $presenter
     ) {}
 
     public function __invoke(ExceptionEvent $event): void
@@ -55,7 +55,7 @@ class ApiExceptionListener
         $this->respond(
             $event,
             500,
-            'Internal server error.'
+            'Internal server error:'  . $e::class . ' - ' . $e->getMessage()
         );
     }
 

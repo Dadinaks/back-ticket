@@ -11,6 +11,8 @@ interface CategoryRepositoryInterface
     public function findByUid(string $uid): ?Category;
 
     public function findByCategory(string $category): ?Category;
+    
+    public function findByActiveCategory(bool $isActive): ?Category;
 
     public function findAll(): array;
 }

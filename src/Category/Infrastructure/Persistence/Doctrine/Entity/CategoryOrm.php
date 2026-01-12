@@ -27,8 +27,8 @@ final class CategoryOrm
     #[ORM\Column(type: Types::DATETIMETZ_IMMUTABLE)]
     private \DateTimeImmutable $createdAt;
 
-    #[ORM\Column(type: Types::DATETIMETZ_IMMUTABLE)]
-    private ?\DateTimeImmutable $updatedAt;
+    #[ORM\Column(type: Types::DATETIMETZ_IMMUTABLE, nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
 
 
     public static function fromDomain(Category $category): self
@@ -57,5 +57,15 @@ final class CategoryOrm
     public function setCategory(string $category): string
     {
         return $this->category = $category;
+    }
+
+    public function setIsActive(bool $isActive): bool
+    {
+        return $this->isActive = $isActive;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): ?\DateTimeImmutable
+    {
+        return $this->updatedAt = $updatedAt;
     }
 }
