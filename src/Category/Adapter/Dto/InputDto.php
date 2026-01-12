@@ -4,7 +4,7 @@ namespace Dadinaks\Category\Adapter\Dto;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-final class inputDto
+final class InputDto
 {
     public function __construct(
         #[Assert\NotBlank()]
