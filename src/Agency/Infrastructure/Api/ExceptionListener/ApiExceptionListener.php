@@ -55,7 +55,7 @@ class ApiExceptionListener
         $this->respond(
             $event,
             500,
-            'Internal server error.'
+            'Internal server error:'  . $e::class . ' - ' . $e->getMessage()
         );
     }
 
