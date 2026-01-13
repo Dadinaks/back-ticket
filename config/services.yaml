@@ -23,7 +23,7 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
     
-    Dadinaks\Category\Infrastructure\Api\ExceptionListener\ApiExceptionListener:
+    Dadinaks\Task\Infrastructure\Api\ExceptionListener\ApiExceptionListener:
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
 
